@@ -36,7 +36,7 @@ class SplashScreenViewModel(
     private fun load() {
         subscription = Observable
             .just(true)
-            .delay(5, TimeUnit.SECONDS)
+            .delay(2, TimeUnit.SECONDS)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe {
