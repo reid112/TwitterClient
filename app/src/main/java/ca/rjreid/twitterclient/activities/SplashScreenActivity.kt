@@ -1,19 +1,27 @@
 package ca.rjreid.twitterclient.activities
 
 import android.os.Bundle
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
 import ca.rjreid.twitterclient.R
 import ca.rjreid.twitterclient.base.BaseActivity
-import io.reactivex.android.schedulers.AndroidSchedulers
-import java.util.concurrent.TimeUnit
+import ca.rjreid.twitterclient.viewmodels.SplashScreenViewModel
+import ca.rjreid.twitterclient.databinding.ActivitySplashScreenBinding
 
 class SplashScreenActivity : BaseActivity() {
+    //region Variables
+    private lateinit var binding: ActivitySplashScreenBinding
+    private lateinit var viewModel: SplashScreenViewModel
+    //endregion
 
     //region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        AndroidSchedulers.mainThread().scheduleDirect({
-            finish()
-        }, 3, TimeUnit.SECONDS) // Add a delay here that simulates a web call to initialize the app
+        viewModel = ViewModelProviders.of(this).get(SplashScreenViewModel::class.java)
+
+        binding = DataBindingUtil.setContentView(this, getLayoutId())
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
     }
     //endregion
 

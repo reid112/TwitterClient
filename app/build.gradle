@@ -6,6 +6,10 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 28
 
+    dataBinding {
+        enabled = true
+    }
+
     defaultConfig {
         applicationId "ca.rjreid.twitterclient"
         minSdkVersion 21
