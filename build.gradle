@@ -20,6 +20,8 @@ buildscript {
         circular_image_view_version = '3.0.0'
         glide_version = '4.8.0'
         junit_version = '4.12'
+        mockito_version = "2.23.4"
+        mockito_kotlin_version = "1.6.0"
     }
 
     repositories {

@@ -5,14 +5,14 @@ import android.view.View
 import androidx.lifecycle.MutableLiveData
 import ca.rjreid.twitterclient.base.BaseViewModel
 import ca.rjreid.twitterclient.data.DataManagerDelegate
-import ca.rjreid.twitterclient.rx.SchedulersFacade
 import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
 class SplashScreenViewModel(
-    private val dataManagerDelegate: DataManagerDelegate,
-    private val schedulersFacade: SchedulersFacade
+    private val dataManagerDelegate: DataManagerDelegate
 ) : BaseViewModel() {
     //region Variables
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
@@ -37,8 +37,8 @@ class SplashScreenViewModel(
         subscription = Observable
             .just(true)
             .delay(5, TimeUnit.SECONDS)
-            .subscribeOn(schedulersFacade.io())
-            .observeOn(schedulersFacade.ui())
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe {
                 loadingVisibility.value = View.VISIBLE
             }
