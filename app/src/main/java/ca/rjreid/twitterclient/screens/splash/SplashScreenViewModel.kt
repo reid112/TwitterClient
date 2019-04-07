@@ -3,15 +3,15 @@ package ca.rjreid.twitterclient.screens.splash
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
-import ca.rjreid.twitterclient.SchedulersFacade
 import ca.rjreid.twitterclient.base.BaseViewModel
-import ca.rjreid.twitterclient.data.Datamanager
+import ca.rjreid.twitterclient.data.DataManagerDelegate
+import ca.rjreid.twitterclient.rx.SchedulersFacade
 import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
 import java.util.concurrent.TimeUnit
 
 class SplashScreenViewModel(
-    private val datamanager: Datamanager,
+    private val dataManagerDelegate: DataManagerDelegate,
     private val schedulersFacade: SchedulersFacade
 ) : BaseViewModel() {
     //region Variables
@@ -47,7 +47,7 @@ class SplashScreenViewModel(
             }
             .subscribe(
                 {
-                    if (datamanager.isLoggedIn()) {
+                    if (dataManagerDelegate.isLoggedIn()) {
                         Log.d("REIDREIDREID", "Logged In")
                     } else {
                         Log.d("REIDREIDREID", "Logged Out")

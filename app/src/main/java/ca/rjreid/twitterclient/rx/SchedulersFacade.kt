@@ -1,4 +1,4 @@
-package ca.rjreid.twitterclient
+package ca.rjreid.twitterclient.rx
 
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers

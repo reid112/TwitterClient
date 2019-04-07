@@ -1,7 +1,7 @@
 package ca.rjreid.twitterclient.screens.splash
 
-import ca.rjreid.twitterclient.SchedulersFacade
-import ca.rjreid.twitterclient.data.Datamanager
+import ca.rjreid.twitterclient.data.DataManagerDelegate
+import ca.rjreid.twitterclient.rx.SchedulersFacade
 import dagger.Module
 import dagger.Provides
 
@@ -10,9 +10,9 @@ import dagger.Provides
 class SplashScreenModule {
     @Provides
     fun provideSplashScreenViewModelFactory(
-        datamanager: Datamanager,
+        dataManagerDelegate: DataManagerDelegate,
         schedulersFacade: SchedulersFacade
     ): SplashScreenViewModelFactory {
-        return SplashScreenViewModelFactory(datamanager, schedulersFacade)
+        return SplashScreenViewModelFactory(dataManagerDelegate, schedulersFacade)
     }
 }
