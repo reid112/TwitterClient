@@ -1,7 +1,8 @@
 package ca.rjreid.twitterclient.di.modules
 
-import ca.rjreid.twitterclient.activities.SplashScreenActivity
+import ca.rjreid.twitterclient.screens.splash.SplashScreenActivity
 import ca.rjreid.twitterclient.di.scopes.ActivityScope
+import ca.rjreid.twitterclient.screens.splash.SplashScreenModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
