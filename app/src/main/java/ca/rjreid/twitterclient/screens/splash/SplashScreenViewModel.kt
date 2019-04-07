@@ -1,17 +1,21 @@
-package ca.rjreid.twitterclient.viewmodels
+package ca.rjreid.twitterclient.screens.splash
 
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import ca.rjreid.twitterclient.base.BaseViewModel
+import ca.rjreid.twitterclient.data.Datamanager
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
 class SplashScreenViewModel : BaseViewModel() {
     //region Variables
+//    @Inject private lateinit var datamanager: Datamanager
+
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
     private lateinit var subscription: Disposable
     //endregion
@@ -44,7 +48,11 @@ class SplashScreenViewModel : BaseViewModel() {
             }
             .subscribe(
                 {
-
+//                    if (datamanager.isLoggedIn()) {
+//                        Log.d("REIDREIDREID", "Logged In")
+//                    } else {
+//                        Log.d("REIDREIDREID", "Logged Out")
+//                    }
                 },
                 {
 

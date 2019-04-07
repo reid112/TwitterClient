@@ -1,4 +1,4 @@
-package ca.rjreid.twitterclient.di.modules
+package ca.rjreid.twitterclient.screens.splash
 
 import dagger.Module
 

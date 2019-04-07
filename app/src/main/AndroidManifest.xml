@@ -11,7 +11,7 @@
             android:theme="@style/AppTheme">
 
         <activity
-                android:name=".activities.SplashScreenActivity"
+                android:name=".screens.splash.SplashScreenActivity"
                 android:configChanges="keyboard|keyboardHidden"
                 android:launchMode="singleTop"
                 android:windowSoftInputMode="adjustResize|stateHidden">

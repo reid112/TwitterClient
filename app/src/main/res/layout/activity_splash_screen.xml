@@ -5,7 +5,7 @@
     <data>
         <variable
                 name="viewModel"
-                type="ca.rjreid.twitterclient.viewmodels.SplashScreenViewModel" />
+                type="ca.rjreid.twitterclient.screens.splash.SplashScreenViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

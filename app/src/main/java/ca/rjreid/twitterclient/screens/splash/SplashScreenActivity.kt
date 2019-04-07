@@ -1,11 +1,10 @@
-package ca.rjreid.twitterclient.activities
+package ca.rjreid.twitterclient.screens.splash
 
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import ca.rjreid.twitterclient.R
 import ca.rjreid.twitterclient.base.BaseActivity
-import ca.rjreid.twitterclient.viewmodels.SplashScreenViewModel
 import ca.rjreid.twitterclient.databinding.ActivitySplashScreenBinding
 
 class SplashScreenActivity : BaseActivity() {
