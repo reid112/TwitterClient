@@ -1,7 +1,9 @@
 package ca.rjreid.twitterclient.di.modules
 
-import ca.rjreid.twitterclient.screens.splash.SplashScreenActivity
 import ca.rjreid.twitterclient.di.scopes.ActivityScope
+import ca.rjreid.twitterclient.screens.login.LoginActivity
+import ca.rjreid.twitterclient.screens.login.LoginModule
+import ca.rjreid.twitterclient.screens.splash.SplashScreenActivity
 import ca.rjreid.twitterclient.screens.splash.SplashScreenModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -11,4 +13,8 @@ abstract class ActivityBindingModule {
     @ActivityScope
     @ContributesAndroidInjector(modules = [SplashScreenModule::class])
     internal abstract fun bindSplashScreenActivity(): SplashScreenActivity
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [LoginModule::class])
+    internal abstract fun bindLoginActivity(): LoginActivity
 }

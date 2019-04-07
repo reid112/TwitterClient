@@ -23,6 +23,12 @@
             </intent-filter>
         </activity>
 
+        <activity
+                android:name=".screens.login.LoginActivity"
+                android:configChanges="keyboard|keyboardHidden"
+                android:launchMode="singleTop"
+                android:windowSoftInputMode="adjustResize|stateHidden"/>
+
     </application>
 
 </manifest>
