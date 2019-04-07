@@ -6,9 +6,11 @@ import androidx.lifecycle.ViewModelProviders
 import ca.rjreid.twitterclient.R
 import ca.rjreid.twitterclient.base.BaseActivity
 import ca.rjreid.twitterclient.databinding.ActivitySplashScreenBinding
+import javax.inject.Inject
 
 class SplashScreenActivity : BaseActivity() {
     //region Variables
+    @Inject lateinit var viewModelFactory: SplashScreenViewModelFactory
     private lateinit var binding: ActivitySplashScreenBinding
     private lateinit var viewModel: SplashScreenViewModel
     //endregion
@@ -16,7 +18,7 @@ class SplashScreenActivity : BaseActivity() {
     //region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(SplashScreenViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(SplashScreenViewModel::class.java)
 
         binding = DataBindingUtil.setContentView(this, getLayoutId())
         binding.lifecycleOwner = this

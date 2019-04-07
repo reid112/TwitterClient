@@ -1,18 +1,20 @@
 package ca.rjreid.twitterclient.screens.splash
 
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
+import ca.rjreid.twitterclient.SchedulersFacade
 import ca.rjreid.twitterclient.base.BaseViewModel
+import ca.rjreid.twitterclient.data.Datamanager
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
-class SplashScreenViewModel : BaseViewModel() {
+class SplashScreenViewModel(
+    private val datamanager: Datamanager,
+    private val schedulersFacade: SchedulersFacade
+) : BaseViewModel() {
     //region Variables
-//    @Inject private lateinit var datamanager: Datamanager
-
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
     private lateinit var subscription: Disposable
     //endregion
@@ -35,8 +37,8 @@ class SplashScreenViewModel : BaseViewModel() {
         subscription = Observable
             .just(true)
             .delay(5, TimeUnit.SECONDS)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(schedulersFacade.io())
+            .observeOn(schedulersFacade.ui())
             .doOnSubscribe {
                 loadingVisibility.value = View.VISIBLE
             }
@@ -45,11 +47,11 @@ class SplashScreenViewModel : BaseViewModel() {
             }
             .subscribe(
                 {
-//                    if (datamanager.isLoggedIn()) {
-//                        Log.d("REIDREIDREID", "Logged In")
-//                    } else {
-//                        Log.d("REIDREIDREID", "Logged Out")
-//                    }
+                    if (datamanager.isLoggedIn()) {
+                        Log.d("REIDREIDREID", "Logged In")
+                    } else {
+                        Log.d("REIDREIDREID", "Logged Out")
+                    }
                 },
                 {
 
