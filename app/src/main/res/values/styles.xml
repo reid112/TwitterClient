@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/primaryBlue</item>
         <item name="colorPrimaryDark">@color/secondaryBlue</item>
         <item name="colorAccent">@color/white</item>
