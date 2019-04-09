@@ -48,10 +48,13 @@ abstract class BaseActivity : DaggerAppCompatActivity() {
 
 
     //region Helpers
-    fun initActionBar(toolbar: Toolbar, @DrawableRes homeAsUpIndicator: Int) {
+    fun initActionBar(toolbar: Toolbar, @DrawableRes homeAsUpIndicator: Int? = null) {
         setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setHomeAsUpIndicator(homeAsUpIndicator)
+
+        homeAsUpIndicator?.let {
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setHomeAsUpIndicator(it)
+        }
     }
     //endregion
 }

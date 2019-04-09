@@ -7,6 +7,7 @@ import ca.rjreid.twitterclient.base.BaseViewModel
 import ca.rjreid.twitterclient.data.DataManagerDelegate
 import ca.rjreid.twitterclient.data.Repository
 import ca.rjreid.twitterclient.data.SingleUseEvent
+import ca.rjreid.twitterclient.screens.list.ListActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.addTo
@@ -33,12 +34,6 @@ class LoginViewModel(private val dataManagerDelegate: DataManagerDelegate): Base
 
     val loginButtonVisibility = MutableLiveData<Int>()
     val loadingVisibility = MutableLiveData<Int>().apply { value = View.GONE }
-    //endregion
-
-    //region Init
-    init {
-
-    }
     //endregion
 
     //region Click Handlers
@@ -105,8 +100,9 @@ class LoginViewModel(private val dataManagerDelegate: DataManagerDelegate): Base
     }
 
     private fun loginSuccessful() {
-        //login
+        dataManagerDelegate.login()
         _loginFailedError.value = SingleUseEvent(false)
+        startActivity(Pair(ListActivity::class, null))
     }
 
     private fun loginFailed() {

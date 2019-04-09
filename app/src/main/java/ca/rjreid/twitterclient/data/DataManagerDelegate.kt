@@ -1,6 +1,7 @@
 package ca.rjreid.twitterclient.data
 
 interface DataManagerDelegate {
-    fun setLoggedIn(value: Boolean)
+    fun login()
+    fun logout()
     fun isLoggedIn(): Boolean
 }

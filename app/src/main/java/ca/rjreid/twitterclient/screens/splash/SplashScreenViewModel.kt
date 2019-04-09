@@ -1,10 +1,10 @@
 package ca.rjreid.twitterclient.screens.splash
 
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import ca.rjreid.twitterclient.base.BaseViewModel
 import ca.rjreid.twitterclient.data.DataManagerDelegate
+import ca.rjreid.twitterclient.screens.list.ListActivity
 import ca.rjreid.twitterclient.screens.login.LoginActivity
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -44,7 +44,7 @@ class SplashScreenViewModel(private val dataManagerDelegate: DataManagerDelegate
             .subscribe(
                 {
                     if (dataManagerDelegate.isLoggedIn()) {
-                        Log.d("REIDREIDREID", "Logged In")
+                        startActivity(Pair(ListActivity::class, null))
                     } else {
                         startActivity(Pair(LoginActivity::class, null))
                     }
