@@ -1,5 +1,6 @@
 package ca.rjreid.twitterclient.screens.list
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ca.rjreid.twitterclient.base.BaseViewModel
@@ -67,6 +68,10 @@ class ListViewModel(private val dataManagerDelegate: DataManagerDelegate) : Base
     //endregion
 
     //region Commands
+    fun onAddClicked() {
+        Log.d("REIDREIDREID", "Add Clicked")
+    }
+
     fun logout() {
         dataManagerDelegate.logout()
         startActivity(Pair(LoginActivity::class, null))
