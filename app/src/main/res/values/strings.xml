@@ -3,4 +3,13 @@
 
     <!-- Preference Keys -->
     <string name="pref_key_is_logged_in" translatable="false">prefKeyIsLoggedIn</string>
+
+    <!-- Login -->
+    <string name="hint_username">Username</string>
+    <string name="hint_password">Password</string>
+    <string name="label_log_in_title">Log in to Twitter.</string>
+    <string name="button_login">Login</string>
+    <string name="error_empty_username">Please enter a username</string>
+    <string name="error_empty_password">Please enter a password</string>
+    <string name="error_login_failed">Username and password did not match.  Please try again.</string>
 </resources>

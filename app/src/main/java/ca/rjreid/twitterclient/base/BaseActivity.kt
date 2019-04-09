@@ -15,14 +15,16 @@ abstract class BaseActivity : DaggerAppCompatActivity() {
         setContentView(getLayoutId())
 
         getViewModel().activityToStart.observe(this, Observer { value ->
-            val intent = Intent(this, value.first.java)
-            val bundle = value.second
+            value.getContentIfNotHandled()?.let {
+                val intent = Intent(this, it.first.java)
+                val bundle = it.second
 
-            if (bundle != null) {
-                intent.putExtras(bundle)
+                if (bundle != null) {
+                    intent.putExtras(bundle)
+                }
+
+                startActivity(intent)
             }
-
-            startActivity(intent)
         })
     }
     //endregion

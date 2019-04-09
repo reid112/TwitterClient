@@ -8,12 +8,14 @@ import ca.rjreid.twitterclient.data.DataManagerDelegate
 import ca.rjreid.twitterclient.screens.login.LoginActivity
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
 class SplashScreenViewModel(private val dataManagerDelegate: DataManagerDelegate) : BaseViewModel() {
     //region Variables
+    private var loadingDisposable: Disposable? = null
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
     //endregion
 
@@ -25,6 +27,8 @@ class SplashScreenViewModel(private val dataManagerDelegate: DataManagerDelegate
 
     //region Helpers
     private fun load() {
+        loadingDisposable?.dispose()
+
         Observable
             .just(true)
             .delay(2, TimeUnit.SECONDS)
@@ -34,6 +38,7 @@ class SplashScreenViewModel(private val dataManagerDelegate: DataManagerDelegate
                 loadingVisibility.value = View.VISIBLE
             }
             .doOnTerminate {
+                loadingDisposable = null
                 loadingVisibility.value = View.GONE
             }
             .subscribe(
@@ -41,7 +46,7 @@ class SplashScreenViewModel(private val dataManagerDelegate: DataManagerDelegate
                     if (dataManagerDelegate.isLoggedIn()) {
                         Log.d("REIDREIDREID", "Logged In")
                     } else {
-                        activityToStart.value = Pair(LoginActivity::class, null)
+                        startActivity(Pair(LoginActivity::class, null))
                     }
                 },
                 {
