@@ -10,4 +10,9 @@ class ListModule {
     fun provideListViewModelFactory(dataManagerDelegate: DataManagerDelegate): ListViewModelFactory {
         return ListViewModelFactory(dataManagerDelegate)
     }
+
+    @Provides
+    fun providesListAdapter(): ListAdapter {
+        return ListAdapter()
+    }
 }

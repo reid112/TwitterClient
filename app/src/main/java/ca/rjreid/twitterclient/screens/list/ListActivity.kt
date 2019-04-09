@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import ca.rjreid.twitterclient.R
 import ca.rjreid.twitterclient.base.BaseActivity
 import ca.rjreid.twitterclient.base.BaseViewModel
@@ -16,6 +18,7 @@ import javax.inject.Inject
 class ListActivity : BaseActivity() {
     //region Variables
     @Inject lateinit var viewModelFactory: ListViewModelFactory
+    @Inject lateinit var listAdapter: ListAdapter
     private lateinit var binding: ActivityListBinding
     private lateinit var viewModel: ListViewModel
     //endregion
@@ -30,6 +33,11 @@ class ListActivity : BaseActivity() {
         binding.viewModel = viewModel
 
         initActionBar(toolbar)
+        recyclerView.apply {
+            adapter = listAdapter
+            layoutManager = LinearLayoutManager(this@ListActivity)
+        }
+
         observeViewModel()
     }
     //endregion
@@ -41,15 +49,14 @@ class ListActivity : BaseActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
+        return when (item.itemId) {
             R.id.menuLogout -> {
                 viewModel.logout()
-                return true
+                true
             }
-            else -> return super.onOptionsItemSelected(item)
+            else -> super.onOptionsItemSelected(item)
         }
     }
-
     //endregion
 
     //region BaseActivity
@@ -61,7 +68,9 @@ class ListActivity : BaseActivity() {
 
     //region Helpers
     private fun observeViewModel() {
-
+        viewModel.tweets.observe(this, Observer {
+            listAdapter.submitList(it)
+        })
     }
     //endregion
 }
