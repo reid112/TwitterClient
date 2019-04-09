@@ -29,6 +29,12 @@
                 android:launchMode="singleTop"
                 android:windowSoftInputMode="adjustResize|stateHidden"/>
 
+        <activity
+                android:name=".screens.list.ListActivity"
+                android:configChanges="keyboard|keyboardHidden"
+                android:launchMode="singleTop"
+                android:windowSoftInputMode="adjustResize|stateHidden"/>
+
     </application>
 
 </manifest>

@@ -11,8 +11,12 @@ class DataManager(private val context: Context) : DataManagerDelegate {
     //endregion
 
     //region Implementations
-    override fun setLoggedIn(value: Boolean) {
-        prefs.edit().putBoolean(context.getString(R.string.pref_key_is_logged_in), value).apply()
+    override fun login() {
+        prefs.edit().putBoolean(context.getString(R.string.pref_key_is_logged_in), true).apply()
+    }
+
+    override fun logout() {
+        prefs.edit().putBoolean(context.getString(R.string.pref_key_is_logged_in), false).apply()
     }
 
     override fun isLoggedIn(): Boolean = prefs.getBoolean(context.getString(R.string.pref_key_is_logged_in), false)
