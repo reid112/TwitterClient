@@ -7,7 +7,6 @@ import ca.rjreid.twitterclient.data.DataManagerDelegate
 import ca.rjreid.twitterclient.models.Tweet
 import ca.rjreid.twitterclient.screens.login.LoginActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
-import java.util.*
 import java.util.concurrent.TimeUnit
 
 class ListViewModel(private val dataManagerDelegate: DataManagerDelegate) : BaseViewModel() {
@@ -76,7 +75,7 @@ class ListViewModel(private val dataManagerDelegate: DataManagerDelegate) : Base
 
     //region Helpers
     private fun getTweet(id: Int) : Tweet {
-        return Tweet(id, "", "name-$id", "handle-$id", "$id : this is the content of the tweet", Date(), 5, 3, 1)
+        return Tweet(id, "", "name-$id", "handle-$id", "$id : this is the content of the tweet")
     }
     //endregion
 }

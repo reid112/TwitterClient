@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ca.rjreid.twitterclient.R
 import ca.rjreid.twitterclient.models.Tweet
 import ca.rjreid.twitterclient.screens.list.ListAdapter.TweetViewHolder
+import ca.rjreid.twitterclient.utils.image
 import kotlinx.android.synthetic.main.list_item_tweet.view.*
 
 class ListAdapter : ListAdapter<Tweet, TweetViewHolder>(DiffCallback()) {
@@ -35,7 +36,12 @@ class ListAdapter : ListAdapter<Tweet, TweetViewHolder>(DiffCallback()) {
     class TweetViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(tweet: Tweet) {
-            itemView.content.text = tweet.content
+            itemView.apply {
+                imageView.image(tweet.userImageUrl)
+                username.text = tweet.username
+                handle.text = tweet.handle
+                content.text = tweet.content
+            }
         }
     }
 }
