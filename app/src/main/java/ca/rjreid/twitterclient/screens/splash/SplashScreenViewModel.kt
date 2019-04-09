@@ -5,18 +5,18 @@ import android.view.View
 import androidx.lifecycle.MutableLiveData
 import ca.rjreid.twitterclient.base.BaseViewModel
 import ca.rjreid.twitterclient.data.DataManagerDelegate
+import ca.rjreid.twitterclient.screens.login.LoginActivity
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
+import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
-class SplashScreenViewModel(
-    private val dataManagerDelegate: DataManagerDelegate
-) : BaseViewModel() {
+class SplashScreenViewModel(private val dataManagerDelegate: DataManagerDelegate) : BaseViewModel() {
     //region Variables
+    private var loadingDisposable: Disposable? = null
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
-    private lateinit var subscription: Disposable
     //endregion
 
     //region Init
@@ -25,16 +25,11 @@ class SplashScreenViewModel(
     }
     //endregion
 
-    //region Overrides
-    override fun onCleared() {
-        super.onCleared()
-        subscription.dispose()
-    }
-    //endregion
-
     //region Helpers
     private fun load() {
-        subscription = Observable
+        loadingDisposable?.dispose()
+
+        Observable
             .just(true)
             .delay(2, TimeUnit.SECONDS)
             .subscribeOn(Schedulers.io())
@@ -43,6 +38,7 @@ class SplashScreenViewModel(
                 loadingVisibility.value = View.VISIBLE
             }
             .doOnTerminate {
+                loadingDisposable = null
                 loadingVisibility.value = View.GONE
             }
             .subscribe(
@@ -50,13 +46,14 @@ class SplashScreenViewModel(
                     if (dataManagerDelegate.isLoggedIn()) {
                         Log.d("REIDREIDREID", "Logged In")
                     } else {
-                        Log.d("REIDREIDREID", "Logged Out")
+                        startActivity(Pair(LoginActivity::class, null))
                     }
                 },
                 {
 
                 }
             )
+            .addTo(compositeDisposable)
     }
     //endregion
 }

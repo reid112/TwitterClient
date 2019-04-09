@@ -1,9 +1,11 @@
 package ca.rjreid.twitterclient.base
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.Observer
 import dagger.android.support.DaggerAppCompatActivity
 
 abstract class BaseActivity : DaggerAppCompatActivity() {
@@ -11,6 +13,19 @@ abstract class BaseActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutId())
+
+        getViewModel().activityToStart.observe(this, Observer { value ->
+            value.getContentIfNotHandled()?.let {
+                val intent = Intent(this, it.first.java)
+                val bundle = it.second
+
+                if (bundle != null) {
+                    intent.putExtras(bundle)
+                }
+
+                startActivity(intent)
+            }
+        })
     }
     //endregion
 
@@ -27,6 +42,8 @@ abstract class BaseActivity : DaggerAppCompatActivity() {
 
     //region Abstract Methods
     abstract fun getLayoutId(): Int
+
+    abstract fun getViewModel(): BaseViewModel
     //endregion
 
 
