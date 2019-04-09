@@ -6,6 +6,7 @@ import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import ca.rjreid.twitterclient.R
 import ca.rjreid.twitterclient.base.BaseActivity
@@ -36,6 +37,7 @@ class ListActivity : BaseActivity() {
         recyclerView.apply {
             adapter = listAdapter
             layoutManager = LinearLayoutManager(this@ListActivity)
+            addItemDecoration(DividerItemDecoration(this@ListActivity, DividerItemDecoration.VERTICAL))
         }
 
         observeViewModel()
