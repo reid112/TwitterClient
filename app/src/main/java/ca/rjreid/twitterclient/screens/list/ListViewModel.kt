@@ -4,16 +4,20 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ca.rjreid.twitterclient.base.BaseViewModel
 import ca.rjreid.twitterclient.data.ActivityAnimation
-import ca.rjreid.twitterclient.data.DataManagerDelegate
+import ca.rjreid.twitterclient.data.RepositoryDelegate
 import ca.rjreid.twitterclient.data.StartActivityInfo
 import ca.rjreid.twitterclient.models.Tweet
 import ca.rjreid.twitterclient.screens.login.LoginActivity
 import ca.rjreid.twitterclient.screens.tweet.TweetActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
-class ListViewModel(private val dataManagerDelegate: DataManagerDelegate) : BaseViewModel() {
+class ListViewModel(private val repositoryDelegate: RepositoryDelegate) : BaseViewModel() {
     //region Variables
+    private var disposable: Disposable? = null
+
     private val _tweets = MutableLiveData<List<Tweet>>()
     val tweets: LiveData<List<Tweet>>
         get() = _tweets
@@ -75,8 +79,14 @@ class ListViewModel(private val dataManagerDelegate: DataManagerDelegate) : Base
     }
 
     fun logout() {
-        dataManagerDelegate.logout()
-        startActivity(StartActivityInfo(LoginActivity::class))
+        disposable?.dispose()
+
+        disposable = repositoryDelegate
+            .logout()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doFinally { disposable?.dispose() }
+            .subscribe { startActivity(StartActivityInfo(LoginActivity::class)) }
     }
     //endregion
 

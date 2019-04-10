@@ -1,15 +1,27 @@
 package ca.rjreid.twitterclient.data
 
-import io.reactivex.Single
+import io.reactivex.Completable
 import java.util.concurrent.TimeUnit
 
-object Repository {
-    private const val USERNAME = "user123"
-    private const val PASSWORD = "pass123"
+class Repository(val dataManagerDelegate: DataManagerDelegate) : RepositoryDelegate {
+    companion object {
+        private const val USERNAME = "user123"
+        private const val PASSWORD = "pass123"
+    }
 
-    fun login(username: String, password: String) =
-        Single
-            .fromCallable { (username == USERNAME && password == PASSWORD) }
-            .delay(2, TimeUnit.SECONDS)
+    override fun login(username: String, password: String) : Completable {
+        return Completable
+            .fromCallable {
+                if (username != USERNAME || password != PASSWORD) {
+                    throw IllegalArgumentException("Login Failed")
+                }
+
+                dataManagerDelegate.login()
+            }
+            .delay(1, TimeUnit.SECONDS) // Add a delay to simulate a network request
+    }
+
+    override fun logout(): Completable =
+            Completable.fromCallable { dataManagerDelegate.logout() }
 
 }
