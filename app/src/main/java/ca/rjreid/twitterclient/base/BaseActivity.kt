@@ -56,8 +56,9 @@ abstract class BaseActivity : DaggerAppCompatActivity() {
 
 
     //region Helpers
-    fun initActionBar(toolbar: Toolbar, @DrawableRes homeAsUpIndicator: Int? = null) {
+    fun initActionBar(toolbar: Toolbar, showTitle: Boolean, @DrawableRes homeAsUpIndicator: Int? = null) {
         setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(showTitle)
 
         homeAsUpIndicator?.let {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)

@@ -33,7 +33,7 @@ class ListActivity : BaseActivity() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        initActionBar(toolbar)
+        initActionBar(toolbar, true)
         recyclerView.apply {
             adapter = listAdapter
             layoutManager = LinearLayoutManager(this@ListActivity)

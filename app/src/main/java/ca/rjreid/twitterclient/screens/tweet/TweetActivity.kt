@@ -28,7 +28,7 @@ class TweetActivity : BaseActivity() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        initActionBar(toolbar, R.drawable.ic_close)
+        initActionBar(toolbar, false, R.drawable.ic_close)
     }
 
     override fun finish() {

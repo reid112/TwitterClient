@@ -27,9 +27,7 @@
                     android:theme="@style/ThemeOverlay.AppCompat.Light"
                     app:layout_collapseMode="none"
                     app:layout_scrollFlags="scroll|enterAlways"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                    app:titleTextColor="@color/black"
-                    app:title=""/>
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
         </com.google.android.material.appbar.AppBarLayout>
 
