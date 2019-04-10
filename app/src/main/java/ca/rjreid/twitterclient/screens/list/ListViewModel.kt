@@ -1,12 +1,14 @@
 package ca.rjreid.twitterclient.screens.list
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ca.rjreid.twitterclient.base.BaseViewModel
+import ca.rjreid.twitterclient.data.ActivityAnimation
 import ca.rjreid.twitterclient.data.DataManagerDelegate
+import ca.rjreid.twitterclient.data.StartActivityInfo
 import ca.rjreid.twitterclient.models.Tweet
 import ca.rjreid.twitterclient.screens.login.LoginActivity
+import ca.rjreid.twitterclient.screens.tweet.TweetActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import java.util.concurrent.TimeUnit
 
@@ -69,12 +71,12 @@ class ListViewModel(private val dataManagerDelegate: DataManagerDelegate) : Base
 
     //region Commands
     fun onAddClicked() {
-        Log.d("REIDREIDREID", "Add Clicked")
+        startActivity(StartActivityInfo(TweetActivity::class, null, ActivityAnimation.SLIDE_UP, ActivityAnimation.STAY))
     }
 
     fun logout() {
         dataManagerDelegate.logout()
-        startActivity(Pair(LoginActivity::class, null))
+        startActivity(StartActivityInfo(LoginActivity::class))
     }
     //endregion
 

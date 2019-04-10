@@ -14,5 +14,9 @@
     <string name="error_login_failed">Username and password did not match.  Please try again.</string>
 
     <!-- List -->
+    <string name="screen_title_home">Home</string>
     <string name="menu_logout">Logout</string>
+
+    <!-- Tweet -->
+    <string name="menu_tweet">Tweet</string>
 </resources>

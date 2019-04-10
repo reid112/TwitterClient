@@ -35,6 +35,12 @@
                 android:launchMode="singleTop"
                 android:windowSoftInputMode="adjustResize|stateHidden"/>
 
+        <activity
+                android:name=".screens.tweet.TweetActivity"
+                android:configChanges="keyboard|keyboardHidden"
+                android:launchMode="singleTop"
+                android:windowSoftInputMode="adjustResize|stateHidden"/>
+
     </application>
 
 </manifest>

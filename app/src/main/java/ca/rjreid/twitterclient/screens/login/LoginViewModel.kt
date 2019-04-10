@@ -7,6 +7,7 @@ import ca.rjreid.twitterclient.base.BaseViewModel
 import ca.rjreid.twitterclient.data.DataManagerDelegate
 import ca.rjreid.twitterclient.data.Repository
 import ca.rjreid.twitterclient.data.SingleUseEvent
+import ca.rjreid.twitterclient.data.StartActivityInfo
 import ca.rjreid.twitterclient.screens.list.ListActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -102,7 +103,7 @@ class LoginViewModel(private val dataManagerDelegate: DataManagerDelegate): Base
     private fun loginSuccessful() {
         dataManagerDelegate.login()
         _loginFailedError.value = SingleUseEvent(false)
-        startActivity(Pair(ListActivity::class, null))
+        startActivity(StartActivityInfo(ListActivity::class))
     }
 
     private fun loginFailed() {
