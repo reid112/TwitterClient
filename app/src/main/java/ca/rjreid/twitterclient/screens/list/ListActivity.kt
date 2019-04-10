@@ -12,7 +12,6 @@ import ca.rjreid.twitterclient.R
 import ca.rjreid.twitterclient.base.BaseActivity
 import ca.rjreid.twitterclient.base.BaseViewModel
 import ca.rjreid.twitterclient.databinding.ActivityListBinding
-import kotlinx.android.synthetic.main.activity_list.*
 import javax.inject.Inject
 
 
@@ -33,8 +32,8 @@ class ListActivity : BaseActivity() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        initActionBar(toolbar, true)
-        recyclerView.apply {
+        initActionBar(binding.toolbar, true)
+        binding.recyclerView.apply {
             adapter = listAdapter
             layoutManager = LinearLayoutManager(this@ListActivity)
             addItemDecoration(DividerItemDecoration(this@ListActivity, DividerItemDecoration.VERTICAL))

@@ -9,7 +9,6 @@ import ca.rjreid.twitterclient.R
 import ca.rjreid.twitterclient.base.BaseActivity
 import ca.rjreid.twitterclient.base.BaseViewModel
 import ca.rjreid.twitterclient.databinding.ActivityTweetBinding
-import kotlinx.android.synthetic.main.activity_tweet.*
 import javax.inject.Inject
 
 class TweetActivity : BaseActivity() {
@@ -28,7 +27,7 @@ class TweetActivity : BaseActivity() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        initActionBar(toolbar, false, R.drawable.ic_close)
+        initActionBar(binding.toolbar, false, R.drawable.ic_close)
     }
 
     override fun finish() {

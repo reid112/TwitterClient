@@ -9,7 +9,6 @@ import ca.rjreid.twitterclient.R
 import ca.rjreid.twitterclient.base.BaseActivity
 import ca.rjreid.twitterclient.base.BaseViewModel
 import ca.rjreid.twitterclient.databinding.ActivityLoginBinding
-import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 
 class LoginActivity : BaseActivity() {
@@ -43,17 +42,17 @@ class LoginActivity : BaseActivity() {
     private fun observeViewModel() {
         viewModel.usernameBlankError.observe(this, Observer {
             if (it) {
-                usernameInputLayout.error = getString(R.string.error_empty_username)
+                binding.usernameInputLayout.error = getString(R.string.error_empty_username)
             } else {
-                usernameInputLayout.error = null
+                binding.usernameInputLayout.error = null
             }
         })
 
         viewModel.passwordBlankError.observe(this, Observer {
             if (it) {
-                passwordLayoutInput.error = getString(R.string.error_empty_password)
+                binding.passwordLayoutInput.error = getString(R.string.error_empty_password)
             } else {
-                passwordLayoutInput.error = null
+                binding.passwordLayoutInput.error = null
             }
         })
 
