@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="ca.rjreid.twitterclient">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
             android:name=".App"
             android:allowBackup="true"
@@ -34,6 +36,12 @@
                 android:configChanges="keyboard|keyboardHidden"
                 android:launchMode="singleTop"
                 android:windowSoftInputMode="adjustResize|stateHidden"/>
+
+        <activity
+                android:name=".screens.tweet.TweetActivity"
+                android:configChanges="keyboard|keyboardHidden"
+                android:launchMode="singleTop"
+                android:windowSoftInputMode="stateVisible"/>
 
     </application>
 

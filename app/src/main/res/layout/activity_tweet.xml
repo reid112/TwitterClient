@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+                name="viewModel"
+                type="ca.rjreid.twitterclient.screens.tweet.TweetViewModel" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+            <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:theme="@style/ThemeOverlay.AppCompat.Light"
+                    app:layout_collapseMode="none"
+                    app:layout_scrollFlags="scroll|enterAlways"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <EditText
+                android:id="@+id/tweetEditText"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="top|start"
+                android:padding="16dp"
+                android:background="@null"
+                android:hint="@string/hint_whats_happening"
+                android:inputType="textCapSentences|textMultiLine"
+                android:maxLength="280"
+                android:text="@={viewModel.tweetEditTextValue}" />
+
+    </LinearLayout>
+
+</layout>

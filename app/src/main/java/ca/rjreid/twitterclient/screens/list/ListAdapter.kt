@@ -11,8 +11,9 @@ import ca.rjreid.twitterclient.models.Tweet
 import ca.rjreid.twitterclient.screens.list.ListAdapter.TweetViewHolder
 import ca.rjreid.twitterclient.utils.image
 import kotlinx.android.synthetic.main.list_item_tweet.view.*
+import javax.inject.Inject
 
-class ListAdapter : ListAdapter<Tweet, TweetViewHolder>(DiffCallback()) {
+class ListAdapter @Inject constructor() : ListAdapter<Tweet, TweetViewHolder>(DiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TweetViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return TweetViewHolder(inflater.inflate(R.layout.list_item_tweet, parent, false))

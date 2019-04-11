@@ -4,16 +4,16 @@ import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ca.rjreid.twitterclient.base.BaseViewModel
-import ca.rjreid.twitterclient.data.DataManagerDelegate
-import ca.rjreid.twitterclient.data.Repository
+import ca.rjreid.twitterclient.data.RepositoryDelegate
 import ca.rjreid.twitterclient.data.SingleUseEvent
+import ca.rjreid.twitterclient.data.StartActivityInfo
 import ca.rjreid.twitterclient.screens.list.ListActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 
-class LoginViewModel(private val dataManagerDelegate: DataManagerDelegate): BaseViewModel() {
+class LoginViewModel(private val repositoryDelegate: RepositoryDelegate): BaseViewModel() {
     //region Variables
     private var loginDisposable: Disposable? = null
 
@@ -71,7 +71,7 @@ class LoginViewModel(private val dataManagerDelegate: DataManagerDelegate): Base
     private fun attemptLogin(username: String, password: String) {
         loginDisposable?.dispose()
 
-        loginDisposable = Repository
+        loginDisposable = repositoryDelegate
             .login(username, password)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -85,24 +85,15 @@ class LoginViewModel(private val dataManagerDelegate: DataManagerDelegate): Base
                 loginButtonVisibility.value = View.VISIBLE
             }
             .subscribe(
-                {  loginSuccessful ->
-                    if (loginSuccessful) {
-                        loginSuccessful()
-                    } else {
-                        loginFailed()
-                    }
-                },
-                {
-                    loginFailed()
-                }
+                { loginSuccessful() },
+                { loginFailed() }
             )
             .addTo(compositeDisposable)
     }
 
     private fun loginSuccessful() {
-        dataManagerDelegate.login()
         _loginFailedError.value = SingleUseEvent(false)
-        startActivity(Pair(ListActivity::class, null))
+        startActivity(StartActivityInfo(ListActivity::class))
     }
 
     private fun loginFailed() {

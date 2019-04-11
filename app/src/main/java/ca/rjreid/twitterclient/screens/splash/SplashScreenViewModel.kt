@@ -4,6 +4,7 @@ import android.view.View
 import androidx.lifecycle.MutableLiveData
 import ca.rjreid.twitterclient.base.BaseViewModel
 import ca.rjreid.twitterclient.data.DataManagerDelegate
+import ca.rjreid.twitterclient.data.StartActivityInfo
 import ca.rjreid.twitterclient.screens.list.ListActivity
 import ca.rjreid.twitterclient.screens.login.LoginActivity
 import io.reactivex.Observable
@@ -44,9 +45,9 @@ class SplashScreenViewModel(private val dataManagerDelegate: DataManagerDelegate
             .subscribe(
                 {
                     if (dataManagerDelegate.isLoggedIn()) {
-                        startActivity(Pair(ListActivity::class, null))
+                        startActivity(StartActivityInfo(ListActivity::class))
                     } else {
-                        startActivity(Pair(LoginActivity::class, null))
+                        startActivity(StartActivityInfo(LoginActivity::class))
                     }
                 },
                 {

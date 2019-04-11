@@ -1,6 +1,6 @@
 package ca.rjreid.twitterclient.screens.login
 
-import ca.rjreid.twitterclient.data.DataManagerDelegate
+import ca.rjreid.twitterclient.data.RepositoryDelegate
 import dagger.Module
 import dagger.Provides
 
@@ -8,8 +8,8 @@ import dagger.Provides
 class LoginModule {
     @Provides
     fun provideLoginViewModelFactory(
-        dataManagerDelegate: DataManagerDelegate
+        repositoryDelegate: RepositoryDelegate
     ): LoginViewModelFactory {
-        return LoginViewModelFactory(dataManagerDelegate)
+        return LoginViewModelFactory(repositoryDelegate)
     }
 }

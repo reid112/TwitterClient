@@ -29,7 +29,7 @@
                     app:layout_scrollFlags="scroll|enterAlways"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                     app:titleTextColor="@color/black"
-                    app:title="Home"/>
+                    app:title="@string/screen_title_home"/>
 
         </com.google.android.material.appbar.AppBarLayout>
 
