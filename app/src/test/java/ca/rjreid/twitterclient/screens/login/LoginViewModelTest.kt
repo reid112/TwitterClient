@@ -9,12 +9,15 @@ import org.junit.Before
 import org.junit.Test
 
 class LoginViewModelTest : BaseTest() {
+    //region Constants
     companion object {
         private const val VALID_USERNAME = "user123"
         private const val VALID_PASSWORD = "pass123"
         private const val INVALID_USERNAME = "invalid-user123"
         private const val INVALID_PASSWORD = "invalid-pass123"
     }
+    //endregion
+
     //region Variables
     private lateinit var viewModel: LoginViewModel
     //endregion
@@ -140,9 +143,7 @@ class LoginViewModelTest : BaseTest() {
         viewModel
             .shouldFinish
             .test()
-            .assertValue {
-                it
-            }
+            .assertValue(true)
     }
 
     @Test
