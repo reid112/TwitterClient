@@ -49,9 +49,9 @@ class MockDataSource : TwitterDataSource {
         }
     }
 
-    override fun getInitialTweets(): List<Tweet> = generateTweets(1, 50) // generate 50 fake tweets
+    override fun getInitialTweets(): List<Tweet> = generateTweets(1, 50)
 
-    override fun getNewTweets(): List<Tweet> = generateTweets(1, 10) // get 10 new fake tweets
+    override fun getNewTweets(): List<Tweet> = generateTweets(1, 3)
     //endregion
 
     //region Helpers
@@ -59,13 +59,11 @@ class MockDataSource : TwitterDataSource {
         val tweets = mutableListOf<Tweet>()
 
         for (i in startId..endId) {
-            val user = users.random()
-
             tweets.add(
                 Tweet(
-                    userImageUrl = user.userImageUrl,
-                    username = user.username,
-                    handle = user.handle,
+                    userImageUrl = fakeUser1.userImageUrl,
+                    username = fakeUser1.username,
+                    handle = fakeUser1.handle,
                     content = tweetContent.random()
                 )
             )

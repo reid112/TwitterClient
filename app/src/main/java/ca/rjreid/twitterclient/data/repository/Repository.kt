@@ -17,19 +17,21 @@ class Repository(
 ) : RepositoryDelegate {
     //region Init
     init {
-        // initialize the database with some tweets if it is empty
         val tweetCount =Single
             .fromCallable { tweetsDao.getTweetCount() }
             .subscribeOn(Schedulers.io())
             .blockingGet()
 
         if (tweetCount <= 0) {
+            // initialize the database with some tweets if it is empty
             Completable
                 .fromCallable {
                     tweetsDao.addTweets(dataSource.getInitialTweets())
                 }
                 .subscribeOn(Schedulers.io())
                 .blockingAwait()
+        } else {
+            fetchNewTweets() // otherwise we will fetch "new" tweets
         }
     }
     //endregion

@@ -1,6 +1,7 @@
 package ca.rjreid.twitterclient.screens.list
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import ca.rjreid.twitterclient.base.BaseViewModel
 import ca.rjreid.twitterclient.data.repository.RepositoryDelegate
 import ca.rjreid.twitterclient.models.ActivityAnimation
@@ -14,6 +15,10 @@ import io.reactivex.schedulers.Schedulers
 
 class ListViewModel(private val repositoryDelegate: RepositoryDelegate) : BaseViewModel() {
     //region Variables
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean>
+        get() = _isLoading
+
     private var disposable: Disposable? = null
 
     val tweets: LiveData<List<Tweet>>
@@ -30,6 +35,12 @@ class ListViewModel(private val repositoryDelegate: RepositoryDelegate) : BaseVi
                 ActivityAnimation.STAY
             )
         )
+    }
+
+    fun refresh() {
+        repositoryDelegate.clearTweets()
+        repositoryDelegate.fetchNewTweets()
+        _isLoading.value = false
     }
 
     fun logout() {

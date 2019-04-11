@@ -43,6 +43,8 @@ class ListActivity : BaseActivity() {
         }
 
         observeViewModel()
+
+        binding.swipeRefreshLayout.setOnRefreshListener(viewModel::refresh)
     }
     //endregion
 
@@ -65,6 +67,10 @@ class ListActivity : BaseActivity() {
 
     //region Helpers
     private fun observeViewModel() {
+        viewModel.isLoading.observe(this, Observer {
+            binding.swipeRefreshLayout.isRefreshing = it
+        })
+
         viewModel.tweets.observe(this, Observer {
             listAdapter.submitList(it)
         })
