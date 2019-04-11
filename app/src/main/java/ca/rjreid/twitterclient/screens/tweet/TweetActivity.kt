@@ -9,6 +9,7 @@ import ca.rjreid.twitterclient.R
 import ca.rjreid.twitterclient.base.BaseActivity
 import ca.rjreid.twitterclient.base.BaseViewModel
 import ca.rjreid.twitterclient.databinding.ActivityTweetBinding
+import ca.rjreid.twitterclient.utils.hideKeyboard
 import javax.inject.Inject
 
 class TweetActivity : BaseActivity() {
@@ -30,9 +31,15 @@ class TweetActivity : BaseActivity() {
         initActionBar(binding.toolbar, false, R.drawable.ic_close)
     }
 
+    override fun onResume() {
+        super.onResume()
+        binding.tweetEditText.requestFocus()
+    }
+
     override fun finish() {
         super.finish()
         overridePendingTransition(R.anim.stay, R.anim.slide_down)
+        binding.tweetEditText.hideKeyboard()
     }
     //endregion
 

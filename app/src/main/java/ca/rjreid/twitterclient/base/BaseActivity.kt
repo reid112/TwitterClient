@@ -14,7 +14,6 @@ abstract class BaseActivity : DaggerAppCompatActivity() {
     //region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(getLayoutId())
 
         getViewModel().activityToStart.observe(this, Observer { value ->
             value.getContentIfNotHandled()?.let {

@@ -19,4 +19,5 @@
 
     <!-- Tweet -->
     <string name="menu_tweet">Tweet</string>
+    <string name="hint_whats_happening">What\'s Happening</string>
 </resources>
