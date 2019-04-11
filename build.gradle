@@ -10,6 +10,7 @@ buildscript {
         runner_version = '1.1.0-alpha4'
         espresso_core_version = '3.1.0-alpha4'
         lifecycle_version = '2.0.0'
+        room_version = '2.1.0-alpha06'
         material_version = '1.1.0-alpha05'
         dagger_version = '2.21'
         javax_annotation_version = '10.0-b28'

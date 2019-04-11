@@ -1,6 +1,6 @@
 package ca.rjreid.twitterclient.screens.splash
 
-import ca.rjreid.twitterclient.data.DataManagerDelegate
+import ca.rjreid.twitterclient.data.sharedprefs.DataManagerDelegate
 import dagger.Module
 import dagger.Provides
 

@@ -7,7 +7,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import ca.rjreid.twitterclient.R
 import ca.rjreid.twitterclient.base.BaseActivity
-import ca.rjreid.twitterclient.base.BaseViewModel
 import ca.rjreid.twitterclient.databinding.ActivityTweetBinding
 import ca.rjreid.twitterclient.utils.hideKeyboard
 import javax.inject.Inject
@@ -16,15 +15,19 @@ class TweetActivity : BaseActivity() {
     //region Variables
     @Inject lateinit var viewModelFactory: TweetViewModelFactory
     private lateinit var binding: ActivityTweetBinding
-    private lateinit var viewModel: TweetViewModel
+
+    override val viewModel: TweetViewModel
+        get() = ViewModelProviders.of(this, viewModelFactory).get(TweetViewModel::class.java)
+
+    override val layoutId: Int
+        get() = R.layout.activity_tweet
     //endregion
 
     //region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = getViewModel() as TweetViewModel
 
-        binding = DataBindingUtil.setContentView(this, getLayoutId())
+        binding = DataBindingUtil.setContentView(this, layoutId)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
@@ -58,12 +61,5 @@ class TweetActivity : BaseActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
-    //endregion
-
-    //region BaseActivity
-    override fun getLayoutId(): Int = R.layout.activity_tweet
-
-    override fun getViewModel(): BaseViewModel =
-        ViewModelProviders.of(this, viewModelFactory).get(TweetViewModel::class.java)
     //endregion
 }

@@ -1,4 +1,4 @@
-package ca.rjreid.twitterclient.data
+package ca.rjreid.twitterclient.models
 
 open class SingleUseEvent<out T>(private val content: T) {
 

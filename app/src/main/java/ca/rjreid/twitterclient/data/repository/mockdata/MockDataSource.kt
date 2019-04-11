@@ -1,6 +1,8 @@
-package ca.rjreid.twitterclient.data
+package ca.rjreid.twitterclient.data.repository.mockdata
 
 import ca.rjreid.twitterclient.models.Tweet
+import ca.rjreid.twitterclient.models.TwitterUser
+import io.reactivex.Single
 
 class MockDataSource : TwitterDataSource {
     //region Companion
@@ -9,10 +11,22 @@ class MockDataSource : TwitterDataSource {
         private const val PASSWORD = "pass123"
         private const val userIcon = "https://www.shareicon.net/data/128x128/2015/09/24/106419_man_512x512.png"
 
-        private val fakeUser1 = TwitterUser(username = "TwitterUser", handle = "@TwitterUser", userImageUrl = "http://invalid-url")
-        private val fakeUser2 = TwitterUser(username = "MrGreenShirt", handle = "@MrGreenShirt", userImageUrl = userIcon)
+        private val fakeUser1 = TwitterUser(
+            username = "TwitterUser",
+            handle = "@TwitterUser",
+            userImageUrl = "http://invalid-url"
+        )
 
-        private val users = listOf(fakeUser1, fakeUser2)
+        private val fakeUser2 = TwitterUser(
+            username = "user123",
+            handle = "@MrGreenShirt",
+            userImageUrl = userIcon
+        )
+
+        private val users = listOf(
+            fakeUser1,
+            fakeUser2
+        )
 
         // Used http://yes.thatcan.be/my/next/tweet/ to generate random tweet content
         private val tweetContent = listOf(
@@ -27,12 +41,17 @@ class MockDataSource : TwitterDataSource {
     //endregion
 
     //region Overrides
-    override fun authenticate(username: String, password: String): Boolean =
-            username == USERNAME && password == PASSWORD
+    override fun authenticate(username: String, password: String): Single<TwitterUser> {
+        return if (username == USERNAME && password == PASSWORD) {
+            Single.just(users.find { it.username == username })
+        } else {
+            Single.error<TwitterUser>(Throwable("Invalid credentials"))
+        }
+    }
 
-    override fun getInitialTweets(): List<Tweet> = generateTweets(1, 50) // generate 50 fake tweets
+    override fun getInitialTweets(): List<Tweet> = generateTweets(1, 50)
 
-    override fun getNewTweets(lastTweetId: Int): List<Tweet> = generateTweets(lastTweetId + 1, 10) // get 10 new fake tweets
+    override fun getNewTweets(): List<Tweet> = generateTweets(1, 3)
     //endregion
 
     //region Helpers
@@ -40,14 +59,11 @@ class MockDataSource : TwitterDataSource {
         val tweets = mutableListOf<Tweet>()
 
         for (i in startId..endId) {
-            val user = users.random()
-
             tweets.add(
                 Tweet(
-                    id = i,
-                    userImageUrl = user.userImageUrl,
-                    username = user.username,
-                    handle = user.handle,
+                    userImageUrl = fakeUser1.userImageUrl,
+                    username = fakeUser1.username,
+                    handle = fakeUser1.handle,
                     content = tweetContent.random()
                 )
             )
@@ -55,9 +71,5 @@ class MockDataSource : TwitterDataSource {
 
         return tweets
     }
-    //endregion
-
-    //region Fake User Class
-    data class TwitterUser(val username: String, val handle: String, val userImageUrl: String)
     //endregion
 }

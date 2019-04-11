@@ -1,4 +1,4 @@
-package ca.rjreid.twitterclient.data
+package ca.rjreid.twitterclient.models
 
 enum class ActivityAnimation {
     SLIDE_UP,

@@ -4,6 +4,7 @@ import android.app.Application
 import ca.rjreid.twitterclient.App
 import ca.rjreid.twitterclient.di.modules.ActivityBindingModule
 import ca.rjreid.twitterclient.di.modules.AppModule
+import ca.rjreid.twitterclient.di.modules.RoomModule
 import ca.rjreid.twitterclient.di.modules.SingletonModule
 import dagger.BindsInstance
 import dagger.Component
@@ -16,7 +17,8 @@ import javax.inject.Singleton
     AppModule::class,
     AndroidSupportInjectionModule::class,
     ActivityBindingModule::class,
-    SingletonModule::class
+    SingletonModule::class,
+    RoomModule::class
 ])
 interface AppComponent : AndroidInjector<App> {
 

@@ -3,8 +3,8 @@ package ca.rjreid.twitterclient.screens.splash
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import ca.rjreid.twitterclient.base.BaseViewModel
-import ca.rjreid.twitterclient.data.DataManagerDelegate
-import ca.rjreid.twitterclient.data.StartActivityInfo
+import ca.rjreid.twitterclient.data.sharedprefs.DataManagerDelegate
+import ca.rjreid.twitterclient.models.StartActivityInfo
 import ca.rjreid.twitterclient.screens.list.ListActivity
 import ca.rjreid.twitterclient.screens.login.LoginActivity
 import io.reactivex.Observable
@@ -49,6 +49,8 @@ class SplashScreenViewModel(private val dataManagerDelegate: DataManagerDelegate
                     } else {
                         startActivity(StartActivityInfo(LoginActivity::class))
                     }
+
+                    finish()
                 },
                 {
 

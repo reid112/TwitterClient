@@ -1,4 +1,4 @@
-package ca.rjreid.twitterclient.data
+package ca.rjreid.twitterclient.models
 
 import android.os.Bundle
 import kotlin.reflect.KClass
