@@ -17,7 +17,7 @@ class Repository(
 ) : RepositoryDelegate {
     //region Init
     init {
-        val tweetCount =Single
+        val tweetCount = Single
             .fromCallable { tweetsDao.getTweetCount() }
             .subscribeOn(Schedulers.io())
             .blockingGet()
