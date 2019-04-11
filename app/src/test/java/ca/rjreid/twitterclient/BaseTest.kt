@@ -1,6 +1,7 @@
 package ca.rjreid.twitterclient
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import ca.rjreid.twitterclient.data.repository.RepositoryDelegate
 import ca.rjreid.twitterclient.data.sharedprefs.DataManagerDelegate
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.plugins.RxJavaPlugins
@@ -21,6 +22,7 @@ abstract class BaseTest {
 
     //region Variables
     @Mock lateinit var dataManagerDelegate: DataManagerDelegate
+    @Mock lateinit var repositoryDelegate: RepositoryDelegate
     //endregion
 
     //region Setup

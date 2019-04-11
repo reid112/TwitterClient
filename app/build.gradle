@@ -74,6 +74,7 @@ dependencies {
     testImplementation "androidx.arch.core:core-testing:$lifecycle_version"
     testImplementation "org.mockito:mockito-core:$mockito_version"
     testImplementation "com.nhaarman:mockito-kotlin:$mockito_kotlin_version"
+    testImplementation "com.jraska.livedata:testing-ktx:$testing_ktx_version"
 
     // Android Test
     androidTestImplementation "androidx.test:runner:$runner_version"

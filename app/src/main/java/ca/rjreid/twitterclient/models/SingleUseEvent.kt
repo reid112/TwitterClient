@@ -13,4 +13,6 @@ open class SingleUseEvent<out T>(private val content: T) {
             content
         }
     }
+
+    fun peekValue() = content
 }

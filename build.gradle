@@ -23,6 +23,7 @@ buildscript {
         junit_version = '4.12'
         mockito_version = "2.23.4"
         mockito_kotlin_version = "1.6.0"
+        testing_ktx_version = "1.1.0"
     }
 
     repositories {
