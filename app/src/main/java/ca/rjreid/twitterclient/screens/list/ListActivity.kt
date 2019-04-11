@@ -73,6 +73,7 @@ class ListActivity : BaseActivity() {
 
         viewModel.tweets.observe(this, Observer {
             listAdapter.submitList(it)
+            viewModel.fetchNewTweets()
         })
     }
     //endregion

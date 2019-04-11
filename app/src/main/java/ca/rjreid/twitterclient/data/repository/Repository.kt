@@ -30,8 +30,6 @@ class Repository(
                 }
                 .subscribeOn(Schedulers.io())
                 .blockingAwait()
-        } else {
-            fetchNewTweets() // otherwise we will fetch "new" tweets
         }
     }
     //endregion
