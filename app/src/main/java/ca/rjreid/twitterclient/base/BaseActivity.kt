@@ -7,7 +7,7 @@ import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import ca.rjreid.twitterclient.R
-import ca.rjreid.twitterclient.data.ActivityAnimation
+import ca.rjreid.twitterclient.models.ActivityAnimation
 import dagger.android.support.DaggerAppCompatActivity
 
 abstract class BaseActivity : DaggerAppCompatActivity() {

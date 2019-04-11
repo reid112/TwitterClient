@@ -5,8 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ca.rjreid.twitterclient.base.BaseViewModel
 import ca.rjreid.twitterclient.data.RepositoryDelegate
-import ca.rjreid.twitterclient.data.SingleUseEvent
-import ca.rjreid.twitterclient.data.StartActivityInfo
+import ca.rjreid.twitterclient.models.SingleUseEvent
+import ca.rjreid.twitterclient.models.StartActivityInfo
 import ca.rjreid.twitterclient.screens.list.ListActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable

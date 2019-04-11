@@ -3,8 +3,8 @@ package ca.rjreid.twitterclient.base
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import ca.rjreid.twitterclient.data.SingleUseEvent
-import ca.rjreid.twitterclient.data.StartActivityInfo
+import ca.rjreid.twitterclient.models.SingleUseEvent
+import ca.rjreid.twitterclient.models.StartActivityInfo
 import io.reactivex.disposables.CompositeDisposable
 
 abstract class BaseViewModel : ViewModel() {
