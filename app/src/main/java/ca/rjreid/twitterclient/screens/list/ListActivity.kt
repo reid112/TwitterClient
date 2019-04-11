@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import ca.rjreid.twitterclient.R
 import ca.rjreid.twitterclient.base.BaseActivity
-import ca.rjreid.twitterclient.base.BaseViewModel
 import ca.rjreid.twitterclient.databinding.ActivityListBinding
 import javax.inject.Inject
 
@@ -20,15 +19,19 @@ class ListActivity : BaseActivity() {
     @Inject lateinit var viewModelFactory: ListViewModelFactory
     @Inject lateinit var listAdapter: ListAdapter
     private lateinit var binding: ActivityListBinding
-    private lateinit var viewModel: ListViewModel
+
+    override val viewModel: ListViewModel
+        get() = ViewModelProviders.of(this, viewModelFactory).get(ListViewModel::class.java)
+
+    override val layoutId: Int
+        get() = R.layout.activity_list
     //endregion
 
     //region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = getViewModel() as ListViewModel
 
-        binding = DataBindingUtil.setContentView(this, getLayoutId())
+        binding = DataBindingUtil.setContentView(this, layoutId)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
@@ -58,13 +61,6 @@ class ListActivity : BaseActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
-    //endregion
-
-    //region BaseActivity
-    override fun getLayoutId(): Int = R.layout.activity_list
-
-    override fun getViewModel(): BaseViewModel =
-        ViewModelProviders.of(this, viewModelFactory).get(ListViewModel::class.java)
     //endregion
 
     //region Helpers

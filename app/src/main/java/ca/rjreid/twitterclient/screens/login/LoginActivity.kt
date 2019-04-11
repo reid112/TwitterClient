@@ -7,7 +7,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import ca.rjreid.twitterclient.R
 import ca.rjreid.twitterclient.base.BaseActivity
-import ca.rjreid.twitterclient.base.BaseViewModel
 import ca.rjreid.twitterclient.databinding.ActivityLoginBinding
 import javax.inject.Inject
 
@@ -15,27 +14,24 @@ class LoginActivity : BaseActivity() {
     //region Variables
     @Inject lateinit var viewModelFactory: LoginViewModelFactory
     private lateinit var binding: ActivityLoginBinding
-    private lateinit var viewModel: LoginViewModel
+
+    override val viewModel: LoginViewModel
+        get() = ViewModelProviders.of(this, viewModelFactory).get(LoginViewModel::class.java)
+
+    override val layoutId: Int
+        get() = R.layout.activity_login
     //endregion
 
     //region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = getViewModel() as LoginViewModel
 
-        binding = DataBindingUtil.setContentView(this, getLayoutId())
+        binding = DataBindingUtil.setContentView(this, layoutId)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
         observeViewModel()
     }
-    //endregion
-
-    //region BaseActivity
-    override fun getLayoutId(): Int = R.layout.activity_login
-
-    override fun getViewModel(): BaseViewModel =
-        ViewModelProviders.of(this, viewModelFactory).get(LoginViewModel::class.java)
     //endregion
 
     //region Helpers

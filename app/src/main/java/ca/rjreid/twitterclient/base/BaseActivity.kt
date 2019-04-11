@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.annotation.DrawableRes
+import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import ca.rjreid.twitterclient.R
@@ -11,11 +12,16 @@ import ca.rjreid.twitterclient.models.ActivityAnimation
 import dagger.android.support.DaggerAppCompatActivity
 
 abstract class BaseActivity : DaggerAppCompatActivity() {
+    //region Abstract Properties
+    abstract val viewModel: BaseViewModel
+    @get:LayoutRes abstract val layoutId: Int
+    //endregion
+
     //region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        getViewModel().activityToStart.observe(this, Observer { value ->
+        viewModel.activityToStart.observe(this, Observer { value ->
             value.getContentIfNotHandled()?.let {
                 val intent = Intent(this, it.activity.java)
                 val bundle = it.bundle
@@ -46,13 +52,6 @@ abstract class BaseActivity : DaggerAppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
     //endregion
-
-    //region Abstract Methods
-    abstract fun getLayoutId(): Int
-
-    abstract fun getViewModel(): BaseViewModel
-    //endregion
-
 
     //region Helpers
     fun initActionBar(toolbar: Toolbar, showTitle: Boolean, @DrawableRes homeAsUpIndicator: Int? = null) {
