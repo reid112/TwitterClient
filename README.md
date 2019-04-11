@@ -1,6 +1,6 @@
 # Twitter Client
 
-Twitter Client is a small Twitter clone that is written fully in kotlin and uses the MVVM architecture.  It uses 100% fake data and does not connect to any APIs.
+Twitter Client is a small Twitter clone that is written fully in kotlin and uses the MVVM architecture.  It uses 100% fake data and does not connect to any APIs.  Twitter resources (logo and colors) were taken from [here](https://about.twitter.com/en_us/company/brand-resources.html)
 
 ### Features
 
