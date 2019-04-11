@@ -1,4 +1,4 @@
-package ca.rjreid.twitterclient.data
+package ca.rjreid.twitterclient.data.repository.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

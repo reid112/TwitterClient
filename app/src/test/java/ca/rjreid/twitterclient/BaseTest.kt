@@ -1,7 +1,7 @@
 package ca.rjreid.twitterclient
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import ca.rjreid.twitterclient.data.DataManagerDelegate
+import ca.rjreid.twitterclient.data.sharedprefs.DataManagerDelegate
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.plugins.RxJavaPlugins
 import io.reactivex.schedulers.Schedulers

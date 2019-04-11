@@ -2,7 +2,7 @@ package ca.rjreid.twitterclient.screens.list
 
 import androidx.lifecycle.LiveData
 import ca.rjreid.twitterclient.base.BaseViewModel
-import ca.rjreid.twitterclient.data.RepositoryDelegate
+import ca.rjreid.twitterclient.data.repository.RepositoryDelegate
 import ca.rjreid.twitterclient.models.ActivityAnimation
 import ca.rjreid.twitterclient.models.StartActivityInfo
 import ca.rjreid.twitterclient.models.Tweet
@@ -40,7 +40,10 @@ class ListViewModel(private val repositoryDelegate: RepositoryDelegate) : BaseVi
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doFinally { disposable?.dispose() }
-            .subscribe { startActivity(StartActivityInfo(LoginActivity::class)) }
+            .subscribe {
+                startActivity(StartActivityInfo(LoginActivity::class))
+                finish()
+            }
     }
     //endregion
 }

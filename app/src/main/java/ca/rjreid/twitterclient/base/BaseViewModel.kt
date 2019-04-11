@@ -13,12 +13,20 @@ abstract class BaseViewModel : ViewModel() {
     val activityToStart: LiveData<SingleUseEvent<StartActivityInfo>>
         get() = _activityToStart
 
+    private val _shouldFinish = MutableLiveData<Boolean>()
+    val shouldFinish: LiveData<Boolean>
+        get() = _shouldFinish
+
     val compositeDisposable = CompositeDisposable()
     //endregion
 
     //region Commands
     fun startActivity(startActivityInfo: StartActivityInfo) {
         _activityToStart.value = SingleUseEvent(startActivityInfo)
+    }
+
+    fun finish() {
+        _shouldFinish.value = true
     }
     //endregion
 

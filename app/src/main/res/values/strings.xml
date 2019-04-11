@@ -2,7 +2,9 @@
     <string name="app_name">Twitter Client</string>
 
     <!-- Preference Keys -->
-    <string name="pref_key_is_logged_in" translatable="false">prefKeyIsLoggedIn</string>
+    <string name="pref_key_logged_in_username" translatable="false">prefKeyLoggedInUsername</string>
+    <string name="pref_key_logged_in_handle" translatable="false">prefKeyLoggedInHandle</string>
+    <string name="pref_key_logged_in_image_url" translatable="false">prefKeyLoggedInImageUrl</string>
 
     <!-- Login -->
     <string name="hint_username">Username</string>

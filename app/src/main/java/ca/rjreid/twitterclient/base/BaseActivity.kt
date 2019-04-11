@@ -21,8 +21,8 @@ abstract class BaseActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel.activityToStart.observe(this, Observer { value ->
-            value.getContentIfNotHandled()?.let {
+        viewModel.activityToStart.observe(this, Observer {  singleUseEvent ->
+            singleUseEvent.getContentIfNotHandled()?.let {
                 val intent = Intent(this, it.activity.java)
                 val bundle = it.bundle
                 val enterAnim = it.enterAnimation
@@ -37,6 +37,12 @@ abstract class BaseActivity : DaggerAppCompatActivity() {
                 if (enterAnim != null && exitAnim != null) {
                     overridePendingTransition(getAnimation(enterAnim), getAnimation(exitAnim))
                 }
+            }
+        })
+
+        viewModel.shouldFinish.observe(this, Observer { shouldFinish ->
+            if (shouldFinish) {
+                finish()
             }
         })
     }

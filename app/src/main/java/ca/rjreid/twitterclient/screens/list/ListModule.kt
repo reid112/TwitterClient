@@ -1,6 +1,6 @@
 package ca.rjreid.twitterclient.screens.list
 
-import ca.rjreid.twitterclient.data.RepositoryDelegate
+import ca.rjreid.twitterclient.data.repository.RepositoryDelegate
 import dagger.Module
 import dagger.Provides
 

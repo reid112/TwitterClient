@@ -2,7 +2,7 @@ package ca.rjreid.twitterclient.screens.splash
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import ca.rjreid.twitterclient.data.DataManagerDelegate
+import ca.rjreid.twitterclient.data.sharedprefs.DataManagerDelegate
 
 
 @Suppress("UNCHECKED_CAST")

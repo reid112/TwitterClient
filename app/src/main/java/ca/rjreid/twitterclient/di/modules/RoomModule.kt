@@ -2,8 +2,8 @@ package ca.rjreid.twitterclient.di.modules
 
 import android.app.Application
 import androidx.room.Room
-import ca.rjreid.twitterclient.data.TweetsDao
-import ca.rjreid.twitterclient.data.TwitterDatabase
+import ca.rjreid.twitterclient.data.repository.database.TweetsDao
+import ca.rjreid.twitterclient.data.repository.database.TwitterDatabase
 import dagger.Module
 import dagger.Provides
 

@@ -4,7 +4,7 @@ import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ca.rjreid.twitterclient.base.BaseViewModel
-import ca.rjreid.twitterclient.data.RepositoryDelegate
+import ca.rjreid.twitterclient.data.repository.RepositoryDelegate
 import ca.rjreid.twitterclient.models.SingleUseEvent
 import ca.rjreid.twitterclient.models.StartActivityInfo
 import ca.rjreid.twitterclient.screens.list.ListActivity
@@ -94,6 +94,7 @@ class LoginViewModel(private val repositoryDelegate: RepositoryDelegate): BaseVi
     private fun loginSuccessful() {
         _loginFailedError.value = SingleUseEvent(false)
         startActivity(StartActivityInfo(ListActivity::class))
+        finish()
     }
 
     private fun loginFailed() {
