@@ -18,6 +18,7 @@
     <!-- List -->
     <string name="screen_title_home">Home</string>
     <string name="menu_logout">Logout</string>
+    <string name="handle">\@%s</string>
 
     <!-- Tweet -->
     <string name="menu_tweet">Tweet</string>

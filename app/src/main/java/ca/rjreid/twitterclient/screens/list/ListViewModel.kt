@@ -15,6 +15,8 @@ import io.reactivex.schedulers.Schedulers
 
 class ListViewModel(private val repositoryDelegate: RepositoryDelegate) : BaseViewModel() {
     //region Variables
+    private var newTweetsFetched = false
+
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean>
         get() = _isLoading
@@ -26,6 +28,14 @@ class ListViewModel(private val repositoryDelegate: RepositoryDelegate) : BaseVi
     //endregion
 
     //region Commands
+    fun fetchNewTweets() {
+        if (!newTweetsFetched) {
+            repositoryDelegate.fetchNewTweets()
+        }
+
+        newTweetsFetched = true
+    }
+
     fun onAddClicked() {
         startActivity(
             StartActivityInfo(
