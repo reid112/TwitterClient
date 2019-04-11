@@ -9,12 +9,6 @@ class TweetViewModel(private val repositoryDelegate: RepositoryDelegate) : BaseV
     val tweetEditTextValue = MutableLiveData<String>()
     //endregion
 
-    //region Init
-    init {
-
-    }
-    //endregion
-
     //region Commands
     fun tweet() {
         tweetEditTextValue.value?.let {
@@ -22,9 +16,5 @@ class TweetViewModel(private val repositoryDelegate: RepositoryDelegate) : BaseV
             finish()
         }
     }
-    //endregion
-
-    //region Helpers
-
     //endregion
 }
